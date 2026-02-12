@@ -9,7 +9,7 @@ import jakarta.ws.rs.core.Response;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class HelloWorldEndpoint {
-    @Path("/hello")
+    @Path("/")
     @GET
     public Response helloWorld() {
         HelloResponse content = new HelloResponse("Hello world!");
