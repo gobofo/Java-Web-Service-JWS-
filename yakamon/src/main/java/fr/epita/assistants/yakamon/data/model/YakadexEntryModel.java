@@ -5,33 +5,33 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "yakadex_entry")
-public class yakadexEntryModel {
+public class YakadexEntryModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    public Integer id;
 
-    @Column(length = 20)
-    String name;
+    @Column(length = 20, nullable = false)
+    public String name;
 
-    @Column
-    Boolean caught;
+    @Column(nullable = false)
+    public Boolean caught;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "first_type")
-    ElementType firstType;
+    @Column(name = "first_type", nullable = false)
+    public ElementType firstType;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "second_type")
-    ElementType secondType;
+    public ElementType secondType;
 
-    @Column()
-    String description;
+    @Column(nullable = false)
+    public String description;
 
     @OneToOne
     @JoinColumn(name = "evolution_id", referencedColumnName = "id")
-    yakadexEntryModel evolution;
+    public YakadexEntryModel evolution;
 
     @Column(name = "evolve_threshold")
-    Integer evolveThreshold;
+    public Integer evolveThreshold;
 }

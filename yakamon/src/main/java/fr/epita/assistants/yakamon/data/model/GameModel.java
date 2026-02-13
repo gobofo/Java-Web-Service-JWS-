@@ -4,12 +4,12 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "game")
-public class gameModel {
+public class GameModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    public Integer id;
 
-    @Column(columnDefinition = "text")
-    String map;
+    @Column(columnDefinition = "text", nullable = false)
+    public String map;
 }

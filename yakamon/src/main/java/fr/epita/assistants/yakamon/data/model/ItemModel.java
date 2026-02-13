@@ -5,17 +5,17 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "item")
-public class itemModel {
+public class ItemModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    public Integer id;
 
-    @Column
-    Integer quantity;
+    @Column(nullable = false)
+    public Integer quantity;
 
     @Enumerated(EnumType.STRING)
-    @Column
-    ItemType type;
+    @Column(nullable = false)
+    public ItemType type;
 
 }
