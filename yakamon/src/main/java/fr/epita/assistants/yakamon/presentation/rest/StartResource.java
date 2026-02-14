@@ -8,15 +8,13 @@ import fr.epita.assistants.yakamon.utils.tile.TileType;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-import org.crac.Resource;
 
 import java.util.List;
 
 @Path("/start")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class StartRessource {
+public class StartResource {
 
     @Inject
     GameService gameService;

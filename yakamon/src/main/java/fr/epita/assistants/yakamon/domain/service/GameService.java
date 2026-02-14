@@ -63,6 +63,10 @@ public class GameService {
         playerModel.name = playerName;
         playerModel.posX = 0;
         playerModel.posY = 0;
+        playerModel.lastCatch = null;
+        playerModel.lastCollect = null;
+        playerModel.lastMove = null;
+        playerModel.lastFeed = null;
         playerRepository.persist(playerModel);
 
         yakadexEntryRepository.listAll().forEach(E->E.setCaught(false));
