@@ -2,10 +2,12 @@ package fr.epita.assistants.yakamon.domain.service;
 
 import fr.epita.assistants.yakamon.converter.MapConverter;
 import fr.epita.assistants.yakamon.data.model.GameModel;
+import fr.epita.assistants.yakamon.data.model.ItemModel;
 import fr.epita.assistants.yakamon.data.model.PlayerModel;
 import fr.epita.assistants.yakamon.data.repository.*;
 import fr.epita.assistants.yakamon.presentation.api.response.StartResponse;
 import fr.epita.assistants.yakamon.utils.ErrorCode;
+import fr.epita.assistants.yakamon.utils.tile.ItemType;
 import fr.epita.assistants.yakamon.utils.tile.TileType;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -51,6 +53,10 @@ public class GameService {
         gameRepository.persist(gameModel);
 
         itemRepository.deleteAll();
+        ItemModel itemModel = new ItemModel();
+        itemModel.setType(ItemType.YAKABALL);
+        itemModel.setQuantity(5);
+        itemRepository.persist(itemModel);
 
         playerRepository.deleteAll();
         PlayerModel playerModel = new PlayerModel();
