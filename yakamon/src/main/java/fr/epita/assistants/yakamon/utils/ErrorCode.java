@@ -12,7 +12,8 @@ import static jakarta.ws.rs.core.Response.Status;
 public enum ErrorCode {
 
     BAD_REQUEST(Status.BAD_REQUEST, "Bad request"),
-    INTERNAL_SERVER_ERROR(Status.INTERNAL_SERVER_ERROR, "Internal server error");
+    INTERNAL_SERVER_ERROR(Status.INTERNAL_SERVER_ERROR, "Internal server error"),
+    TOO_MANY_REQUESTS(Status.TOO_MANY_REQUESTS, "Too many request");
 
     private final Response.Status errorCode;
 

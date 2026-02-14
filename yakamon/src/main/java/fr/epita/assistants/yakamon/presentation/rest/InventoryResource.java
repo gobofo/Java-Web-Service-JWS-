@@ -1,6 +1,6 @@
 package fr.epita.assistants.yakamon.presentation.rest;
 
-import fr.epita.assistants.yakamon.domain.service.PlayerService;
+import fr.epita.assistants.yakamon.domain.service.ItemService;
 import fr.epita.assistants.yakamon.presentation.api.response.InventoryResponse;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -15,13 +15,13 @@ import jakarta.ws.rs.core.MediaType;
 public class InventoryResource {
 
     @Inject
-    PlayerService playerService;
+    ItemService itemService;
 
     @Path("/")
     @GET
     public InventoryResponse inventory()
     {
-        return new InventoryResponse(playerService.getInventory());
+        return new InventoryResponse(itemService.getInventory());
     }
 
 }

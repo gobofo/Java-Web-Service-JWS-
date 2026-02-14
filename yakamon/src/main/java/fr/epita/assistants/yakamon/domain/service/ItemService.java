@@ -11,7 +11,7 @@ import jakarta.inject.Inject;
 import java.util.List;
 
 @ApplicationScoped
-public class PlayerService {
+public class ItemService {
 
     @Inject
     ItemRepository itemRepository;

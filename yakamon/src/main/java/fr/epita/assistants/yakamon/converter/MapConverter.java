@@ -26,7 +26,7 @@ public class MapConverter {
             ErrorCode.BAD_REQUEST.throwException("Map not found at given path");
         }
 
-        return map;
+        return map.replaceAll("\n", ";");
     }
 
     public List<List<TileType>> mapConvert(String Smap)
@@ -37,7 +37,7 @@ public class MapConverter {
         List<TileType> line = new ArrayList<>();
         for (int i = 0; i < Smap.length(); i+=3) {
 
-            if(Smap.charAt(i) == '\n') {
+            if(Smap.charAt(i) == ';') {
                 Lmap.add(line);
                 line = new ArrayList<>();
                 i++;
@@ -87,7 +87,7 @@ public class MapConverter {
                 }
                 number++;
             }
-            Smap.append('\n');
+            Smap.append(';');
         }
 
         return Smap.toString();
