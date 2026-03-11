@@ -50,7 +50,9 @@ public class MapConverter {
             char collectible = Smap.charAt(i+2);
 
             for (int j = 0; j < number - '0'; j++) {
-                TileType tile = new TileType(TerrainType.getTerrain(terrainType), CollectibleUtils.getCollectible(collectible));
+                TerrainType t = TerrainType.getTerrain(terrainType);
+                if (t == null) t = TerrainType.GRASS;
+                TileType tile = new TileType(t, CollectibleUtils.getCollectible(collectible));
 
                 line.add(tile);
             }
@@ -71,22 +73,22 @@ public class MapConverter {
                 ErrorCode.INTERNAL_SERVER_ERROR.throwException("Empty line during conversion");
 
             char terrainType = line.getFirst().getTerrainType().getValue();
-            char collectible = line.getFirst().getCollectible().getCollectibleInfo().getValue();
+            char collectible = line.getFirst().getCollectible() == null ? 'N' : line.getFirst().getCollectible().getCollectibleInfo().getValue();
             char number = '1';
             for (var e : line.subList(1, line.size()))
             {
                 char actualTerrainType = e.getTerrainType().getValue();
-                char actualCollectible = e.getCollectible().getCollectibleInfo().getValue();
+                char actualCollectible = e.getCollectible() == null ? 'N' : e.getCollectible().getCollectibleInfo().getValue();
                 if(number == '9' || terrainType!=actualTerrainType || collectible!=actualCollectible)
                 {
-                    Smap.append(number + terrainType + collectible);
-                    number = '1';
+                    Smap.append(number).append(terrainType).append(collectible);
+                    number = '0';
                     terrainType = actualTerrainType;
                     collectible = actualCollectible;
-                    continue;
                 }
                 number++;
             }
+            Smap.append(number).append(terrainType).append(collectible);
             Smap.append(';');
         }
 

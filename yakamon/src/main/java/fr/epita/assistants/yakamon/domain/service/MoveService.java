@@ -32,7 +32,7 @@ public class MoveService {
 
     @ConfigProperty(name="JWS_TICK_DURATION") Integer JWS_TICK_DURATION;
 
-    @ConfigProperty(name="JWS_MOVEMENT_DELAY") Integer JWS_MOVEMENT_DELAY ;
+    @ConfigProperty(name="JWS_MOVEMENT_DELAY") Integer JWS_MOVEMENT_DELAY;
 
     private Boolean cooldown(PlayerModel player)
     {
@@ -46,6 +46,10 @@ public class MoveService {
     @Transactional
     public Point move(String direction)
     {
+
+        if(gameRepository.findAll().count()==0)
+            ErrorCode.BAD_REQUEST.throwException("Game is not running");
+
         Point point = null;
         try {
             point = Direction.valueOf(direction).getPoint();
@@ -64,6 +68,11 @@ public class MoveService {
 
         List<List<TileType>> map = mapConverter.mapConvert(gameRepository.listAll().getFirst().getMap());
 
+        if(destination.getPosX() < 0 || destination.getPosY() < 0 || destination.getPosY() >= map.size() || destination.getPosX() >= map.get(destination.getPosY()).size())
+        {
+            ErrorCode.BAD_REQUEST.throwException("Out of bounds");
+        }
+
         if(!map.get(destination.getPosY()).get(destination.getPosX()).getTerrainType().isWalkable())
             ErrorCode.BAD_REQUEST.throwException("Not walkable");
 
@@ -73,8 +82,6 @@ public class MoveService {
         player.setPosY(destination.getPosY());
 
         return destination;
-
-
 
     }
 

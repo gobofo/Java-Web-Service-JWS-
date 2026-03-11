@@ -58,6 +58,11 @@ public class GameService {
         itemModel.setQuantity(5);
         itemRepository.persist(itemModel);
 
+        ItemModel scrooge = new ItemModel();
+        scrooge.setType(ItemType.SCROOGE);
+        scrooge.setQuantity(0);
+        itemRepository.persist(scrooge);
+
         playerRepository.deleteAll();
         PlayerModel playerModel = new PlayerModel();
         playerModel.name = playerName;
