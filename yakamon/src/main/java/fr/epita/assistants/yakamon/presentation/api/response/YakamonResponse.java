@@ -1,11 +1,11 @@
-package fr.epita.assistants.yakamon.domain.entity;
+package fr.epita.assistants.yakamon.presentation.api.response;
 
 import lombok.Value;
 
 import java.util.UUID;
 
 @Value
-public class YakamonEntity {
+public class YakamonResponse {
 
     UUID uuid;
     String nickname;

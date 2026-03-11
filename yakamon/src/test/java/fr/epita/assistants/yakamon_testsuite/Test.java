@@ -8,7 +8,7 @@ import fr.epita.assistants.yakamon.converter.YakamonConverter;
 import fr.epita.assistants.yakamon.data.model.ItemModel;
 import fr.epita.assistants.yakamon.data.model.YakadexEntryModel;
 import fr.epita.assistants.yakamon.data.model.YakamonModel;
-import fr.epita.assistants.yakamon.domain.entity.YakamonEntity;
+import fr.epita.assistants.yakamon.presentation.api.response.YakamonResponse;
 import fr.epita.assistants.yakamon.presentation.api.response.YakadexEntryResponse;
 import fr.epita.assistants.yakamon.utils.ElementType;
 import fr.epita.assistants.yakamon.utils.Item;
@@ -200,7 +200,7 @@ public class Test {
     // liste vide
     @org.junit.jupiter.api.Test
     void testYakamonConverterEmptyList() {
-        List<YakamonEntity> result = yakamonConverter.yakamonConverter(new ArrayList<>());
+        List<YakamonResponse> result = yakamonConverter.yakamonConverter(new ArrayList<>());
         assertTrue(result.isEmpty());
     }
 
@@ -217,7 +217,7 @@ public class Test {
         model.yakadexEntry = entry;
         model.energyPoints = 80;
 
-        YakamonEntity entity = yakamonConverter.yakamonConverter(model);
+        YakamonResponse entity = yakamonConverter.yakamonConverter(model);
         assertEquals(uuid, entity.getUuid());
         assertEquals("Yakamon", entity.getNickname());
         assertEquals(7, entity.getYakadexId());
@@ -244,7 +244,7 @@ public class Test {
         m2.yakadexEntry = e2;
         m2.energyPoints = 50;
 
-        List<YakamonEntity> result = yakamonConverter.yakamonConverter(List.of(m1, m2));
+        List<YakamonResponse> result = yakamonConverter.yakamonConverter(List.of(m1, m2));
         assertEquals(2, result.size());
         assertEquals("Alpha", result.get(0).getNickname());
         assertEquals("Beta", result.get(1).getNickname());

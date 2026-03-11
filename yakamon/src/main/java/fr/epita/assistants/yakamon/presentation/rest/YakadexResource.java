@@ -1,5 +1,6 @@
 package fr.epita.assistants.yakamon.presentation.rest;
 
+import fr.epita.assistants.yakamon.converter.YakadexConverter;
 import fr.epita.assistants.yakamon.data.repository.GameRepository;
 import fr.epita.assistants.yakamon.domain.service.GameService;
 import fr.epita.assistants.yakamon.domain.service.YakadexService;
@@ -18,11 +19,14 @@ public class YakadexResource {
     @Inject
     YakadexService yakadexService;
 
+    @Inject
+    YakadexConverter yakadexConverter;
+
     @GET
     @Path("/")
     public YakadexResponse getYakadex(@QueryParam("only_missing") boolean onlyMissing) {
 
-        return new YakadexResponse(yakadexService.yakadex(onlyMissing));
+        return new YakadexResponse(yakadexConverter.yakadexConverter(yakadexService.yakadex(onlyMissing)));
 
     }
 

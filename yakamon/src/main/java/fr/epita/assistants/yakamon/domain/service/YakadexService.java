@@ -21,10 +21,7 @@ public class YakadexService {
     @Inject
     YakadexEntryRepository yakadexEntryRepository;
 
-    @Inject
-    YakadexConverter yakadexConverter;
-
-    public List<YakadexEntryResponse> yakadex(boolean onlyMissing)
+    public List<YakadexEntryModel> yakadex(boolean onlyMissing)
     {
         if(gameRepository.findAll().count()==0)
             ErrorCode.BAD_REQUEST.throwException("Game is not running");
@@ -34,6 +31,6 @@ public class YakadexService {
         else
             listYakadexEntryModel = yakadexEntryRepository.listAll();
 
-        return yakadexConverter.yakadexConverter(listYakadexEntryModel);
+        return listYakadexEntryModel;
     }
 }

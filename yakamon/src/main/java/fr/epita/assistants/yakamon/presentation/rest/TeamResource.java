@@ -1,11 +1,10 @@
 package fr.epita.assistants.yakamon.presentation.rest;
 
 import fr.epita.assistants.yakamon.domain.service.TeamService;
-import fr.epita.assistants.yakamon.presentation.api.response.TeamResponse;
+import fr.epita.assistants.yakamon.presentation.api.response.YakamonTeamResponse;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
 
 @Path("/team")
 @Produces(MediaType.APPLICATION_JSON)
@@ -17,7 +16,7 @@ public class TeamResource {
 
     @GET
     @Path("/")
-    public TeamResponse getTeam() {
-        return new TeamResponse(teamService.getTeam());
+    public YakamonTeamResponse getTeam() {
+        return new YakamonTeamResponse(teamService.getTeam());
     }
 }
