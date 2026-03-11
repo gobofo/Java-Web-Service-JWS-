@@ -34,7 +34,7 @@ public class CatchService {
     PlayerRepository playerRepository;
 
     @Inject
-    InventoryResource inventoryResource;
+    ItemService itemService;
 
     @Inject
     YakamonRepository yakamonRepository;
@@ -42,6 +42,8 @@ public class CatchService {
     YakadexEntryRepository yakadexEntryRepository;
     @Inject
     ItemRepository itemRepository;
+
+
 
     @ConfigProperty(name="JWS_TICK_DURATION") Integer JWS_TICK_DURATION;
 
@@ -59,7 +61,7 @@ public class CatchService {
                 ErrorCode.BAD_REQUEST.throwException("Catch is on cooldown");
         }
 
-        var items = inventoryResource.inventory().getItems();
+        var items = itemService.getInventory();
         if(items.stream().filter( item -> item.getItemType().equals(ItemType.YAKABALL)).findFirst().get().getQuantity() == 0)
             ErrorCode.BAD_REQUEST.throwException("No Yakaball in inventory");
 
