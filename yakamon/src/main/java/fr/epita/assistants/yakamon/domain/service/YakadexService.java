@@ -33,4 +33,16 @@ public class YakadexService {
 
         return listYakadexEntryModel;
     }
+
+    public YakadexEntryModel getById(int id)
+    {
+        if(gameRepository.findAll().count()==0)
+            ErrorCode.BAD_REQUEST.throwException("Game is not running");
+
+        var results = yakadexEntryRepository.list("id", id);
+        if(results.isEmpty())
+            ErrorCode.NOT_FOUND.throwException("Yakamon not found");
+
+        return results.getFirst();
+    }
 }
