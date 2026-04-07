@@ -37,7 +37,7 @@ Un frontend graphique existe pour jouer au jeu, cependant il est la propriété 
 
 | Méthode | Endpoint | Description |
 |---------|----------|-------------|
-| `POST` | `/start` | Démarrer une partie — reset la DB et charge la map. Body : `{ "mapPath": "...", "playerName": "..." }`. Retourne la grille de tuiles. |
+| `POST` | `/start` | Démarrer une partie, reset la DB et charge la map. Body : `{ "mapPath": "...", "playerName": "..." }`. Retourne la grille de tuiles. |
 
 ### Player
 
