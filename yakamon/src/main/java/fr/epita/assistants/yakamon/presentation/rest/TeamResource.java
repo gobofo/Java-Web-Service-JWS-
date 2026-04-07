@@ -3,6 +3,7 @@ package fr.epita.assistants.yakamon.presentation.rest;
 import fr.epita.assistants.yakamon.converter.YakamonConverter;
 import fr.epita.assistants.yakamon.domain.service.EvolveService;
 import fr.epita.assistants.yakamon.domain.service.FeedService;
+import fr.epita.assistants.yakamon.domain.service.ReleaseService;
 import fr.epita.assistants.yakamon.domain.service.RenameService;
 import fr.epita.assistants.yakamon.domain.service.TeamService;
 import fr.epita.assistants.yakamon.presentation.api.request.FeedRequest;
@@ -28,6 +29,9 @@ public class TeamResource {
 
     @Inject
     EvolveService evolveService;
+
+    @Inject
+    ReleaseService releaseService;
 
     @Inject
     RenameService renameService;
@@ -57,5 +61,12 @@ public class TeamResource {
     @Path("/{uuid}/rename")
     public YakamonResponse renameYakamon(@PathParam("uuid") UUID uuid, RenameRequest request) {
         return yakamonConverter.yakamonConverter(renameService.rename(uuid, request.getNewNickname()));
+    }
+
+    @DELETE
+    @Path("/{uuid}/release")
+    public jakarta.ws.rs.core.Response releaseYakamon(@PathParam("uuid") UUID uuid) {
+        releaseService.release(uuid);
+        return jakarta.ws.rs.core.Response.noContent().build();
     }
 }
