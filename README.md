@@ -27,6 +27,10 @@ mvn quarkus:dev
 
 L'API est disponible sur `http://localhost:8081`.
 
+## Frontend
+
+Un frontend graphique existe pour jouer au jeu, cependant il est la propriété d'EPITA et ne peut pas être publié ici. Tous les endpoints de l'API sont néanmoins fonctionnels et peuvent être utilisés avec n'importe quel client HTTP.
+
 ## API
 
 ### Game
