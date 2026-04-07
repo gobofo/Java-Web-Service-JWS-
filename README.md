@@ -18,11 +18,32 @@ Projet EPITA JWS : API REST d'un jeu de type Pokémon appelé **Yakamon**, déve
 - Maven
 - PostgreSQL (base de données `yakamon` sur le port `5432`)
 
+## Installation (macOS)
+
+```bash
+brew install openjdk@21 maven postgresql
+brew services start postgresql
+```
+
+Ajouter Java 21 au PATH :
+
+```bash
+echo 'export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+Créer le rôle et la base de données PostgreSQL :
+
+```bash
+psql postgres -c "CREATE ROLE postgres WITH LOGIN SUPERUSER;"
+psql postgres -c "CREATE DATABASE yakamon;"
+```
+
 ## Lancer l'application
 
 ```bash
 cd yakamon
-mvn quarkus:dev
+JAVA_HOME=/opt/homebrew/opt/openjdk@21 mvn quarkus:dev
 ```
 
 L'API est disponible sur `http://localhost:8081`.
